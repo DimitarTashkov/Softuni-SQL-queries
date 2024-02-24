@@ -1,0 +1,59 @@
+CREATE TABLE Categories
+(
+	Id INT PRIMARY KEY IDENTITY,
+	CategoryName VARCHAR(50) NOT NULL,
+	DailyRate DECIMAL(7,2),
+	WeeklyRate DECIMAL(7,2),
+	MonthlyRate DECIMAL(7,2),
+	WeekendRate DECIMAL(7,2),
+)
+CREATE TABLE Cars
+(
+	Id INT PRIMARY KEY IDENTITY,
+	PlateNumber VARCHAR(8) NOT NULL,
+	Manufacturer VARCHAR(50) NOT NULL,
+	Model VARCHAR(50) NOT NULL,
+	CarYear SMALLINT NOT NULL,
+	Category INT FOREIGN KEY REFERENCES Categories(Id),
+	Doors SMALLINT,
+	Picture VARBINARY(8000),
+	Condition VARCHAR(50),
+	Available BIT NOT NULL
+
+)
+CREATE TABLE Employees
+(
+	Id INT PRIMARY KEY IDENTITY
+	,FirstName VARCHAR(50)
+	,LastName VARCHAR(50)
+	,Title VARCHAR(50)
+	,NOTES VARCHAR(MAX)
+)
+CREATE TABLE Customers
+(
+	Id INT PRIMARY KEY IDENTITY
+	,DriverLicenceNumber VARCHAR(30)
+	,FullName VARCHAR(100)
+	,Adress VARCHAR(250)
+	,City VARCHAR(50)
+	,ZIPCode VARCHAR(8)	
+)
+CREATE TABLE RentalOrders
+(
+	Id INT PRIMARY KEY IDENTITY
+	,EmployeeId INT FOREIGN KEY REFERENCES Employees(Id)
+	,CustomerId INT FOREIGN KEY REFERENCES Customers(Id)
+	,TankLevel FLOAT(2)
+	,KilometrageStart INT NOT NULL
+	,KilometrageEnd INT NOT NULL
+	,TotalKilometrage INT NOT NULL
+	,StartDate DATETIME2 NOT NULL
+	,EndDate DATETIME2 NOT NULL
+	,TotalDays SMALLINT NOT NULL
+	,RateApplied DECIMAL(7,2)
+	,TaxRate DECIMAL(5,2)
+	,OrderStatus VARCHAR(50)
+	,NOTES VARCHAR(MAX)
+
+)
+INSERT INTO 

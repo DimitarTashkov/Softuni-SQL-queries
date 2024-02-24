@@ -1,0 +1,26 @@
+CREATE DATABASE ChatChill
+USE ChatChill
+
+CREATE TABLE Users
+(
+	Id INT PRIMARY KEY
+	,Username NVARCHAR(50) NOT NULL
+	,EnemiesKilled INT NOT NULL
+	,DamageDealt INT NOT NULL
+	,Points DECIMAL(18,2) NOT NULL
+
+)
+
+CREATE TABLE Games
+(
+	Id INT PRIMARY KEY
+	,EnemiesKilled INT NOT NULL
+	,DamageDealt INT NOT NULL
+	,Points DECIMAL(18,2) NOT NULL
+)
+CREATE TABLE UsersGames
+(
+	UserId INT FOREIGN KEY REFERENCES Users(Id)
+	,GameId INT FOREIGN KEY REFERENCES Games(Id)
+	PRIMARY KEY(UserId,GameId)
+)
